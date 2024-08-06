@@ -1,23 +1,35 @@
 const express = require('express');
-
 const app = express();
 const PORT = 3000;
 
-/*middleware
-app.use((req,res, next) => {
-    console.log('Middleware Executed!');
-    next();
-});*/
+//Query Parameters
+app.get('/', (req,res)  =>{
 
-app.get('/users/:id', (req,res) => {
-    const userId = req.params.id;
-    res.send (`User with ID ${userId}`);
-});
+        const id = req.query.id;
+        const username = req.query.username;
 
-app.get('/', (req,res) => {
-    res.send('Hello, world!');
+        res.send(`User ID: ${id}. Username: ${username}`);
 
 });
+
+app.get('/products/:id', (req, res)  =>{
+
+    const productID = req.params.id;
+    const product = [
+        {"id": 1, "name" : "Product A"},
+        {"id": 2, "name" : "Product B"},
+        {"id": 3, "name" : "Product C"},
+
+        
+
+
+    ]
+
+
+
+})
+
+
 app.listen(3000, () =>{
     console.log('Server  started on port ${PORT}');
 });
